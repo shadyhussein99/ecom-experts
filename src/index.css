@@ -1,0 +1,142 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+:root {
+  /* Brand palette */
+  --primary: #4e2fd2;
+  --secondary: #edf4ff;
+  --danger: #d8392b;
+  --success: #0aa288;
+  --text-grey: #575757;
+  --grey-100: #f6fefc;
+  --grey-200: #f0f4f7;
+  --grey-400: #f1f1f2;
+  --grey-500: #e6ebf0;
+  --grey-700: #525963;
+
+  /* shadcn semantic tokens, mapped onto the brand palette */
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: var(--text-grey);
+  --card: #ffffff;
+  --card-foreground: var(--text-grey);
+  --popover: #ffffff;
+  --popover-foreground: var(--text-grey);
+  --primary-foreground: #ffffff;
+  --secondary-foreground: var(--grey-700);
+  --muted: var(--grey-200);
+  --muted-foreground: var(--grey-700);
+  --accent: var(--grey-200);
+  --accent-foreground: var(--grey-700);
+  --destructive: var(--danger);
+  --destructive-foreground: #ffffff;
+  --success-foreground: #ffffff;
+  --border: var(--grey-500);
+  --input: var(--grey-500);
+  --ring: var(--primary);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand aliases, so raw utilities like bg-danger / text-success / bg-grey-100 work */
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-text-grey: var(--text-grey);
+  --color-grey-100: var(--grey-100);
+  --color-grey-200: var(--grey-200);
+  --color-grey-400: var(--grey-400);
+  --color-grey-500: var(--grey-500);
+  --color-grey-700: var(--grey-700);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--sans);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  :root {
+    font: 1.125rem/145% var(--sans);
+    letter-spacing: 0.18px;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @media (max-width: 1024px) {
+      font-size: 1rem;
+    }
+  }
+
+  body {
+    margin: 0;
+    @apply bg-background text-foreground;
+  }
+
+  #root {
+    max-width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--sans);
+    font-weight: 500;
+    color: var(--grey-700);
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    letter-spacing: -1.68px;
+    margin: 32px 0;
+    @media (max-width: 1024px) {
+      font-size: 2.25rem;
+      margin: 20px 0;
+    }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 118%;
+    letter-spacing: -0.24px;
+    margin: 0 0 8px;
+    @media (max-width: 1024px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
