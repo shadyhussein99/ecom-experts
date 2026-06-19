@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Wyze Cam V4",
+    "description": "The clearest Wyze Cam ever made.",
+    "variants": [
+      {
+        "color": "White",
+        "icon": "/cameras/product-one/product-one-v-white.svg"
+      },
+      {
+        "color": "Grey",
+        "icon": "/cameras/product-one/product-one-v-grey.svg"
+      },
+      {
+        "color": "Black",
+        "icon": "/cameras/product-one/product-one-v-black.svg"
+      }
+    ],
+    "sale": { "discount": "22%", "originalPrice": "$35.98" },
+    "price": "$27.98",
+    "image": "/cameras/product-one/product-one.png"
+  },
+  {
+    "title": "Wyze Cam Pan V3",
+    "description": "360° pan and 180° tilt security camera.",
+    "variants": [
+      {
+        "color": "White",
+        "icon": "/cameras/product-two/product-two-v-white.svg"
+      },
+      {
+        "color": "Black",
+        "icon": "/cameras/product-two/product-two-v-black.svg"
+      }
+    ],
+    "sale": { "discount": "12%", "originalPrice": "$39.98" },
+    "price": "$34.98",
+    "image": "/cameras/product-two/product-two.png"
+  },
+  {
+    "title": "Wyze Cam Floodlight V2",
+    "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
+    "variants": [
+      {
+        "color": "White",
+        "icon": "/cameras/product-three/product-three-v-white.svg"
+      },
+      {
+        "color": "Black",
+        "icon": "/cameras/product-three/product-three-v-black.svg"
+      }
+    ],
+    "sale": { "discount": "22%", "originalPrice": "$89.98" },
+    "price": "$69.98",
+    "image": "/cameras/product-three/product-three.png"
+  },
+  {
+    "title": "Wyze Duo Cam Doorbell",
+    "description": "Two cameras. Two views. Double the porch protection.",
+    "variants": null,
+    "sale": null,
+    "price": "$69.98",
+    "image": "/cameras/product-four/product-four.png"
+  },
+  {
+    "title": "Wyze Battery Cam Pro",
+    "description": "Protect anywhere. See everything 2.5K HDR. No power outlet or electrician needed.",
+    "variants": [
+      {
+        "color": "White",
+        "icon": "/cameras/product-five/product-five-v-white.svg"
+      },
+      {
+        "color": "Black",
+        "icon": "/cameras/product-five/product-five-v-black.svg"
+      }
+    ],
+    "sale": null,
+    "price": "$89.98",
+    "image": "/cameras/product-five/product-five.png"
+  }
+]

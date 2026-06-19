@@ -15,7 +15,10 @@
     "utils": "@/utils",
     "lib": "@/lib",
     "hooks": "@/hooks",
-    "assets": "@/assets"
+    "store": "@/store",
+    "types": "@/types",
+    "assets": "@/assets",
+    "mocks": "@/mocks"
   },
   "iconLibrary": "lucide"
 }
