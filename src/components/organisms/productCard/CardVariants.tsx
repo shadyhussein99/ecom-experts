@@ -28,7 +28,12 @@ export const CardVariants = ({
           )}
         >
           {variant.icon && (
-            <img src={variant.icon} alt="" className="size-7 object-contain" />
+            <img
+              loading="lazy"
+              src={variant.icon}
+              alt={`${variant.color} product`}
+              className="size-7 object-contain"
+            />
           )}
           {variant.color}
         </button>
