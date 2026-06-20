@@ -1,17 +1,21 @@
 [
   {
+    "id": "1",
     "title": "Wyze Cam V4",
     "description": "The clearest Wyze Cam ever made.",
     "variants": [
       {
+        "id": "1-1",
         "color": "White",
         "icon": "/cameras/product-one/product-one-v-white.svg"
       },
       {
+        "id": "1-2",
         "color": "Grey",
         "icon": "/cameras/product-one/product-one-v-grey.svg"
       },
       {
+        "id": "1-3",
         "color": "Black",
         "icon": "/cameras/product-one/product-one-v-black.svg"
       }
@@ -21,14 +25,17 @@
     "image": "/cameras/product-one/product-one.png"
   },
   {
+    "id": "2",
     "title": "Wyze Cam Pan V3",
     "description": "360° pan and 180° tilt security camera.",
     "variants": [
       {
+        "id": "2-1",
         "color": "White",
         "icon": "/cameras/product-two/product-two-v-white.svg"
       },
       {
+        "id": "2-2",
         "color": "Black",
         "icon": "/cameras/product-two/product-two-v-black.svg"
       }
@@ -38,14 +45,17 @@
     "image": "/cameras/product-two/product-two.png"
   },
   {
+    "id": "3",
     "title": "Wyze Cam Floodlight V2",
     "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
     "variants": [
       {
+        "id": "3-1",
         "color": "White",
         "icon": "/cameras/product-three/product-three-v-white.svg"
       },
       {
+        "id": "3-2",
         "color": "Black",
         "icon": "/cameras/product-three/product-three-v-black.svg"
       }
@@ -55,6 +65,7 @@
     "image": "/cameras/product-three/product-three.png"
   },
   {
+    "id": "4",
     "title": "Wyze Duo Cam Doorbell",
     "description": "Two cameras. Two views. Double the porch protection.",
     "variants": null,
@@ -63,14 +74,17 @@
     "image": "/cameras/product-four/product-four.png"
   },
   {
+    "id": "5",
     "title": "Wyze Battery Cam Pro",
     "description": "Protect anywhere. See everything 2.5K HDR. No power outlet or electrician needed.",
     "variants": [
       {
+        "id": "5-1",
         "color": "White",
         "icon": "/cameras/product-five/product-five-v-white.svg"
       },
       {
+        "id": "5-2",
         "color": "Black",
         "icon": "/cameras/product-five/product-five-v-black.svg"
       }
