@@ -1,3 +1,5 @@
 export const ProtectionSection = () => {
-  return <div></div>
+  return (
+    <h3 className="text-foreground text-center">Protection options go here.</h3>
+  )
 }

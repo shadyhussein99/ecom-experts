@@ -24,14 +24,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div
       className={cn(
-        'bg-card flex cursor-pointer flex-col gap-6 rounded-2xl border p-6 shadow-sm sm:flex-row sm:items-center sm:gap-8 sm:p-8',
+        'bg-card flex flex-col gap-6 rounded-2xl border p-3.5 shadow-sm sm:flex-row sm:items-start sm:gap-2',
         totalQuantity > 0 && 'border-primary border-2',
       )}
     >
       {/* Image and Sale Badge */}
-      <div className="flex max-w-fit shrink-0 flex-col gap-4 px-0 sm:w-2/5">
+      <div className="flex max-w-fit shrink-0 flex-col gap-3 px-0 sm:w-2/5">
         {sale && (
-          <span className="bg-primary text-primary-foreground w-fit rounded-full px-4 py-1.5 text-base font-semibold">
+          <span className="bg-primary text-primary-foreground w-fit rounded-full px-2 py-0.5 text-xs font-semibold">
             Save {sale.discount}
           </span>
         )}
@@ -45,18 +45,18 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-5">
+      <div className="flex flex-1 flex-col gap-3">
         {/* Card title and description */}
         <div className="flex flex-col gap-2">
-          <h3 className="text-3xl leading-none font-bold text-neutral-900 sm:text-4xl">
+          <p className="text-lg leading-none font-semibold text-neutral-900">
             {title}
-          </h3>
+          </p>
 
-          <p className="text-foreground text-lg">
+          <p className="text-foreground text-sm">
             {description}{' '}
             <a
               href="#"
-              className="text-primary whitespace-nowrap underline underline-offset-4"
+              className="text-primary font-semibold whitespace-nowrap underline underline-offset-2"
             >
               Learn More
             </a>
@@ -71,7 +71,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           />
         )}
 
-        <div className="mt-1 flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-4">
           <CardStepper
             quantity={selectedQuantity}
             onChange={setSelectedQuantity}
@@ -80,11 +80,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {/* Card price */}
           <div className="flex flex-col items-end leading-tight">
             {sale && (
-              <span className="text-danger text-xl line-through sm:text-2xl">
+              <span className="text-danger text-lg line-through sm:text-xl">
                 {sale.originalPrice}
               </span>
             )}
-            <span className="text-grey-700 text-xl sm:text-2xl">{price}</span>
+            <span className="text-grey-700 text-lg sm:text-xl">{price}</span>
           </div>
         </div>
       </div>
