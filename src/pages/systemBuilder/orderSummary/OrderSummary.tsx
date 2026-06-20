@@ -2,6 +2,9 @@ import { Divider } from '@/components/atoms/Divider'
 import { useOrderItems } from './hooks/useOrderItems'
 import { OrderItem } from './components/OrderItem'
 import { StaticOrderSection } from './components/static/StaticOrderSection'
+import { OrderPlan } from './components/static/OrderPlan'
+import { OrderShipping } from './components/static/OrderShipping'
+import { OrderTotal } from './components/static/OrderTotal'
 import { STATIC_SECTIONS } from './staticSections'
 
 export const OrderSummary = () => {
@@ -21,7 +24,7 @@ export const OrderSummary = () => {
 
         <Divider />
 
-        <p className="text-grey-600 pt-2.5 pb-1 text-xs">CAMERAS</p>
+        <p className="text-grey-600 pb-1 text-xs">CAMERAS</p>
 
         <div className="flex flex-col">
           {items.map((item) => (
@@ -35,6 +38,14 @@ export const OrderSummary = () => {
             <StaticOrderSection section={section} />
           </div>
         ))}
+
+        <Divider />
+        <OrderPlan />
+
+        <Divider />
+        <OrderShipping />
+
+        <OrderTotal />
       </div>
     </div>
   )
