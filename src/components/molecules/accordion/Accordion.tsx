@@ -8,6 +8,7 @@ interface AccordionProps {
   defaultOpen?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  selectedCount?: number
   children: ReactNode
 }
 
@@ -17,6 +18,7 @@ export const Accordion = ({
   defaultOpen = false,
   open,
   onOpenChange,
+  selectedCount,
   children,
 }: AccordionProps) => {
   const [internalOpen, setInternalOpen] = useState(defaultOpen)
@@ -43,6 +45,12 @@ export const Accordion = ({
           className="size-5 object-contain"
         />
         <span className="flex-1 text-xl font-semibold">{title}</span>
+
+        {isOpen && (
+          <span className="text-primary text-base font-medium whitespace-nowrap">
+            {selectedCount === undefined ? '0' : selectedCount} selected
+          </span>
+        )}
 
         <img
           loading="lazy"

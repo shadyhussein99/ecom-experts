@@ -2,7 +2,7 @@ import shipping from '@/assets/general/shipping.svg'
 import { formatAmount } from '@/lib/formatAmount'
 import { SHIPPING_PRICING } from '@/pages/systemBuilder/orderSummary/staticSections'
 
-export const OrderShipping = () => {
+export const StaticOrderShipping = () => {
   return (
     <div className="flex items-center gap-3 py-2">
       <div className="bg-background flex size-12 shrink-0 items-center justify-center rounded-lg p-1 shadow-sm">

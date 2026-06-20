@@ -1,6 +1,6 @@
 import planSummary from '@/assets/general/plan-summary.svg'
 
-export const OrderPlan = () => {
+export const StaticOrderPlan = () => {
   return (
     <>
       <p className="text-grey-600 pb-1 text-xs">PLAN</p>

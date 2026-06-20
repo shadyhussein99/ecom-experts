@@ -4,6 +4,7 @@ import { CamerasSection } from './components/CamerasSection'
 import { PlanSection } from './components/PlanSection'
 import { SensorsSection } from './components/SensorsSection'
 import { ProtectionSection } from './components/ProtectionSection'
+import { useSelectedProductCounts } from './hooks/useSelectedProductCounts'
 import camerasIcon from '@/assets/products/cameras-icon.svg'
 import planIcon from '@/assets/products/plan-icon.svg'
 import sensorsIcon from '@/assets/products/sensors-icon.svg'
@@ -51,6 +52,7 @@ const sections: Section[] = [
 
 export const BuilderSteps = () => {
   const [openSection, setOpenSection] = useState<string | null>(sections[0].id)
+  const selectedProductCounts = useSelectedProductCounts()
 
   return (
     <div className="flex flex-col">
@@ -74,6 +76,7 @@ export const BuilderSteps = () => {
                 setOpenSection(isOpen ? null : section.id)
               }
               icon={section.icon}
+              selectedCount={selectedProductCounts[section.type]}
             >
               <Content
                 nextSectionType={nextSection?.type}
