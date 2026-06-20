@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import { toast } from 'sonner'
 import type { Product } from '@/types/product'
 import { cn } from '@/lib/clsx'
+import { useProductCard } from './hooks/useProductCard'
 import { CardVariants } from './CardVariants'
 import { CardStepper } from './CardStepper'
 
@@ -12,32 +11,21 @@ interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { id, title, description, image, variants, sale, price } = product
 
-  const [selectedVariantId, setSelectedVariantId] = useState<string | null>(
-    variants?.length ? null : id,
-  )
-  const [quantities, setQuantities] = useState<Record<string, number>>({})
+  const variantsIDs = variants?.map((variant) => variant.id) || []
 
-  const selectedQuantity = selectedVariantId
-    ? (quantities[selectedVariantId] ?? 0)
-    : 0
-  const totalQuantity = Object.values(quantities).reduce(
-    (sum, quantity) => sum + quantity,
-    0,
-  )
-
-  const setSelectedQuantity = (quantity: number) => {
-    if (!selectedVariantId) {
-      toast.warning('Please select a color')
-      return
-    }
-    setQuantities((prev) => ({ ...prev, [selectedVariantId]: quantity }))
-  }
+  const {
+    selectedVariantId,
+    setSelectedVariantId,
+    selectedQuantity,
+    totalQuantity,
+    setSelectedQuantity,
+  } = useProductCard({ productID: id, variantsIDs })
 
   return (
     <div
       className={cn(
-        'bg-card flex cursor-pointer flex-col gap-6 rounded-3xl border p-6 shadow-sm sm:flex-row sm:items-center sm:gap-8 sm:p-8',
-        totalQuantity > 0 && 'border-primary',
+        'bg-card flex cursor-pointer flex-col gap-6 rounded-2xl border p-6 shadow-sm sm:flex-row sm:items-center sm:gap-8 sm:p-8',
+        totalQuantity > 0 && 'border-primary border-2',
       )}
     >
       {/* Image and Sale Badge */}
