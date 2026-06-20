@@ -11,7 +11,7 @@ export const OrderSummary = () => {
   const items = useOrderItems()
 
   return (
-    <div className="bg-secondary rounded-lg px-4">
+    <div className="bg-secondary rounded-lg px-4 pb-4">
       <p className="text-foreground pt-2.5 pb-1 text-xs">REVIEW</p>
 
       <div className="py-4">

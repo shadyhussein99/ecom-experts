@@ -3,6 +3,16 @@ import sensorsSummaryOne from '@/assets/products/sensors-summary-one.svg'
 import sensorsSummaryTwo from '@/assets/products/sensors-summary-two.svg'
 import type { StaticOrderSectionModel } from './types'
 
+export const PLAN_PRICING = {
+  originalPrice: 12.99,
+  price: 9.99,
+}
+
+export const SHIPPING_PRICING = {
+  originalPrice: 5.99,
+  price: 0,
+}
+
 export const STATIC_SECTIONS: StaticOrderSectionModel[] = [
   {
     label: 'SENSORS',

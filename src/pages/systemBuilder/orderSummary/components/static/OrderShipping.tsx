@@ -1,4 +1,6 @@
 import shipping from '@/assets/general/shipping.svg'
+import { formatAmount } from '@/lib/formatAmount'
+import { SHIPPING_PRICING } from '@/pages/systemBuilder/orderSummary/staticSections'
 
 export const OrderShipping = () => {
   return (
@@ -17,8 +19,14 @@ export const OrderShipping = () => {
       </p>
 
       <div className="flex flex-col items-end leading-tight">
-        <span className="text-grey-600 text-sm line-through">$5.99</span>
-        <span className="text-primary text-sm font-semibold">FREE</span>
+        <span className="text-grey-600 text-sm line-through">
+          ${formatAmount(SHIPPING_PRICING.originalPrice)}
+        </span>
+        <span className="text-primary text-sm font-semibold">
+          {SHIPPING_PRICING.price === 0
+            ? 'FREE'
+            : `$${formatAmount(SHIPPING_PRICING.price)}`}
+        </span>
       </div>
     </div>
   )
