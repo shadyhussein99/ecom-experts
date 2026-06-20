@@ -1,41 +1,51 @@
-import { useState, type ReactNode } from 'react'
+import { useState, type ComponentType } from 'react'
 import { Accordion } from '@/components/organisms/accordion/Accordion'
+import { CamerasSection } from './components/CamerasSection'
+import { PlanSection } from './components/PlanSection'
+import { SensorsSection } from './components/SensorsSection'
+import { ProtectionSection } from './components/ProtectionSection'
 import camerasIcon from '@/assets/products/cameras-icon.svg'
 import planIcon from '@/assets/products/plan-icon.svg'
 import sensorsIcon from '@/assets/products/sensors-icon.svg'
 import protectionIcon from '@/assets/products/protection-icon.svg'
+import type { SectionContentProps, SectionType } from './types'
 
 interface Section {
   id: string
   title: string
-  content: ReactNode
+  Content: ComponentType<SectionContentProps>
   icon: string
+  type: SectionType
 }
 
 const sections: Section[] = [
   {
     id: '1',
     title: 'Choose your cameras',
-    content: 'Cameras options go here.',
+    Content: CamerasSection,
     icon: camerasIcon,
+    type: 'cameras',
   },
   {
     id: '2',
     title: 'Choose your plan',
-    content: 'Plan options go here.',
+    Content: PlanSection,
     icon: planIcon,
+    type: 'plan',
   },
   {
     id: '3',
     title: 'Choose your sensors',
-    content: 'Sensors options go here.',
+    Content: SensorsSection,
     icon: sensorsIcon,
+    type: 'sensors',
   },
   {
     id: '4',
     title: 'Add extra protection',
-    content: 'Protection options go here.',
+    Content: ProtectionSection,
     icon: protectionIcon,
+    type: 'protection',
   },
 ]
 
@@ -46,11 +56,13 @@ export const BuilderSteps = () => {
     <div className="flex flex-col">
       {sections.map((section, index) => {
         const stepNumber = index + 1
+        const nextSection = sections[index + 1]
+        const { Content } = section
 
         return (
           <div
             key={section.id}
-            className={`${openSection === section.id ? 'bg-secondary' : ''} rounded-lg p-2`}
+            className={`${openSection === section.id ? 'bg-secondary px-4' : ''} rounded-lg p-2`}
           >
             <p className="text-foreground pt-2.5 pb-1 text-xs">
               STEP {stepNumber} OF {sections.length}
@@ -63,13 +75,10 @@ export const BuilderSteps = () => {
               }
               icon={section.icon}
             >
-              {typeof section.content === 'string' ? (
-                <h3 className="text-foreground text-center">
-                  {section.content}
-                </h3>
-              ) : (
-                section.content
-              )}
+              <Content
+                nextSectionType={nextSection?.type}
+                onNext={nextSection && (() => setOpenSection(nextSection.id))}
+              />
             </Accordion>
           </div>
         )

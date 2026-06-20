@@ -1,3 +1,3 @@
 export const OrderSummary = () => {
-  return <div></div>
+  return <div className="bg-secondary h-96 rounded-lg"></div>
 }

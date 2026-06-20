@@ -1,6 +1,6 @@
-import { useId, useState, type ReactNode } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { useState, type ReactNode } from 'react'
 import { cn } from '@/lib/clsx'
+import ChevronDown from '@/assets/icons/chevron-down.svg'
 
 interface AccordionProps {
   title: string
@@ -19,10 +19,6 @@ export const Accordion = ({
   onOpenChange,
   children,
 }: AccordionProps) => {
-  const id = useId()
-  const triggerId = `${id}-trigger`
-  const contentId = `${id}-content`
-
   const [internalOpen, setInternalOpen] = useState(defaultOpen)
   const isControlled = open !== undefined
   const isOpen = isControlled ? open : internalOpen
@@ -37,11 +33,8 @@ export const Accordion = ({
       className={`border-foreground border-t-[0.5px] ${isOpen ? '' : 'border-b-[0.5px]'}`}
     >
       <button
-        id={triggerId}
-        aria-expanded={isOpen}
-        aria-controls={contentId}
         onClick={toggle}
-        className="flex w-full items-center gap-4 py-3 text-left"
+        className="flex w-full cursor-pointer items-center gap-4 pt-3 pb-6 text-left"
       >
         <img
           loading="lazy"
@@ -50,10 +43,13 @@ export const Accordion = ({
           className="size-5 object-contain"
         />
         <span className="flex-1 text-xl font-semibold">{title}</span>
-        <ChevronDown
-          aria-hidden
+
+        <img
+          loading="lazy"
+          src={ChevronDown}
+          alt={title}
           className={cn(
-            'text-primary size-6 shrink-0 transition-transform duration-200',
+            'size-3 object-contain transition-transform duration-200',
             isOpen && 'rotate-180',
           )}
         />
