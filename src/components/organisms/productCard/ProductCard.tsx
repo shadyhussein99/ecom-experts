@@ -37,6 +37,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         )}
         <div className="flex w-fit flex-1 items-center justify-center">
           <img
+            loading="lazy"
             src={image}
             alt={title}
             className="max-h-56 w-auto object-contain sm:max-h-64"
