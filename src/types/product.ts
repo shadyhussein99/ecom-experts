@@ -1,7 +1,7 @@
 export interface ProductVariant {
   id: string
   color: string
-  icon: string | null
+  image: string | null
 }
 
 export interface ProductSale {
