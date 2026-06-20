@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { productItem } from '@/store/productsStore'
+import type { productItem } from '@/store/products/productsStore'
 import type { SectionType } from '../types'
 import { countSelectedProductsBySection } from './useSelectedProductCounts'
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { Product } from '@/types/product'
-import type { productItem } from '@/store/productsStore'
+import type { productItem } from '@/store/products/productsStore'
 import { resolveOrderItems } from './useOrderItems'
 
 const withVariants: Product = {

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { loadSavedSystem, persistSavedSystem } from '@/store/systemStorage'
+import { loadSavedSystem, persistSavedSystem } from './systemStorage'
 
 export interface productItem {
   productID: string

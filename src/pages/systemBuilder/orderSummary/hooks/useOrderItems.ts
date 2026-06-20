@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import products from '@/mocks/products.json'
-import { useProductsStore } from '@/store/productsStore'
-import type { productItem } from '@/store/productsStore'
+import { useProductsStore } from '@/store/products/productsStore'
+import type { productItem } from '@/store/products/productsStore'
 import type { Product } from '@/types/product'
 import type { OrderItemViewModel } from '../types'
 

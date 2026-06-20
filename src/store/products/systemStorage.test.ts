@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { loadSavedSystem, persistSavedSystem } from '@/store/systemStorage'
+import { loadSavedSystem, persistSavedSystem } from './systemStorage'
 import { LOCAL_STORAGE_NAMES } from '@/constants/localStorageNames'
 
 const createMemoryStorage = () => {

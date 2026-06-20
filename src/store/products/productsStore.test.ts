@@ -3,8 +3,8 @@ import {
   DEFAULT_SELECTED_PRODUCTS,
   getInitialSelectedProducts,
   useProductsStore,
-} from '@/store/productsStore'
-import { loadSavedSystem } from '@/store/systemStorage'
+} from './productsStore'
+import { loadSavedSystem } from './systemStorage'
 
 const createMemoryStorage = () => {
   const store = new Map<string, string>()

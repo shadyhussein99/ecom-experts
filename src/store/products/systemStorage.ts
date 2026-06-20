@@ -1,4 +1,4 @@
-import type { productItem } from '@/store/productsStore'
+import type { productItem } from './productsStore'
 import { LOCAL_STORAGE_NAMES } from '@/constants/localStorageNames'
 
 type SavedProducts = Record<string, productItem>
