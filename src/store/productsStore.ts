@@ -15,7 +15,11 @@ interface ProductsState {
 }
 
 export const useProductsStore = create<ProductsState>((set) => ({
-  selectedProducts: {},
+  selectedProducts: {
+    '1-1': { productID: '1', variantID: '1-1', quantity: 1 },
+    '2-1': { productID: '2', variantID: '2-1', quantity: 2 },
+    '4': { productID: '4', variantID: null, quantity: 1 },
+  },
   setQuantity: ({ productID, variantID }, quantity) =>
     set((state) => {
       const key = variantID ?? productID

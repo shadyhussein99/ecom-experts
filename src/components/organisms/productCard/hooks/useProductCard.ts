@@ -11,8 +11,15 @@ export const useProductCard = ({
   productID,
   variantsIDs,
 }: UseProductCardProps) => {
+  const getInitialSelectedVariantID = () => {
+    if (!variantsIDs?.length) return productID
+    // Pre-select the variant already in the store
+    const { selectedProducts } = useProductsStore.getState()
+    return variantsIDs.find((id) => selectedProducts[id]) ?? null
+  }
+
   const [selectedVariantId, setSelectedVariantId] = useState<string | null>(
-    variantsIDs?.length ? null : productID,
+    getInitialSelectedVariantID,
   )
 
   const selectedProducts = useProductsStore((state) => state.selectedProducts)
