@@ -1,6 +1,6 @@
 import { CardStepper } from '@/components/organisms/productCard/components/CardStepper'
 import { formatAmount } from '@/lib/formatAmount'
-import { useProductsStore } from '@/store/productsStore'
+import { useProductsStore } from '@/store/products/productsStore'
 import type { OrderItemViewModel } from '../types'
 
 interface OrderItemProps {

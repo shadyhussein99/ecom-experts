@@ -3,9 +3,19 @@ import satisfaction from '@/assets/general/statisfaction.svg'
 import { Button } from '@/components/atoms/button/Button'
 import { formatAmount } from '@/lib/formatAmount'
 import { useOrderTotals } from '@/pages/systemBuilder/orderSummary/hooks/useOrderTotals'
+import { useProductsStore } from '@/store/products/productsStore'
 
 export const OrderTotal = () => {
   const { originalTotal, finalTotal, savings } = useOrderTotals()
+  const saveForLater = useProductsStore((state) => state.saveForLater)
+
+  const handleSaveForLater = () => {
+    if (saveForLater()) {
+      toast.success('System is saved successfully.')
+    } else {
+      toast.error("Couldn't save your system. Please try again.")
+    }
+  }
 
   return (
     <div className="pt-2">
@@ -49,7 +59,7 @@ export const OrderTotal = () => {
 
       <button
         className="text-grey-700 mx-auto mt-4 block cursor-pointer text-sm italic underline underline-offset-2"
-        onClick={() => null}
+        onClick={handleSaveForLater}
       >
         Save my system for later
       </button>

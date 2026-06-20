@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { useProductsStore } from '@/store/productsStore'
+import { useProductsStore } from '@/store/products/productsStore'
 
 interface UseProductCardProps {
   productID: string
