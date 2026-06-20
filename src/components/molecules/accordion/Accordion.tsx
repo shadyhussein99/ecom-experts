@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { cn } from '@/lib/clsx'
+import { Skeleton } from '@/components/atoms/Skeleton'
 import ChevronDown from '@/assets/icons/chevron-down.svg'
 
 interface AccordionProps {
@@ -9,6 +10,7 @@ interface AccordionProps {
   open?: boolean
   onOpenChange?: (open: boolean) => void
   selectedCount?: number
+  countLoading?: boolean
   children: ReactNode
 }
 
@@ -19,6 +21,7 @@ export const Accordion = ({
   open,
   onOpenChange,
   selectedCount,
+  countLoading = false,
   children,
 }: AccordionProps) => {
   const [internalOpen, setInternalOpen] = useState(defaultOpen)
@@ -46,11 +49,14 @@ export const Accordion = ({
         />
         <span className="flex-1 text-xl font-semibold">{title}</span>
 
-        {isOpen && (
-          <span className="text-primary text-base font-medium whitespace-nowrap">
-            {selectedCount === undefined ? '0' : selectedCount} selected
-          </span>
-        )}
+        {isOpen &&
+          (countLoading ? (
+            <Skeleton className="h-4 w-16" />
+          ) : (
+            <span className="text-primary text-base font-medium whitespace-nowrap">
+              {selectedCount === undefined ? '0' : selectedCount} selected
+            </span>
+          ))}
 
         <img
           loading="lazy"

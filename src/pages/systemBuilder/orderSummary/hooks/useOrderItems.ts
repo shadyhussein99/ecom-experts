@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import products from '@/mocks/products.json'
 import { useProductsStore } from '@/store/products/productsStore'
 import type { productItem } from '@/store/products/productsStore'
+import { useMockProductResponseStore } from '@/store/mockProductResponse/mockProductResponseStore'
 import type { Product } from '@/types/product'
 import type { OrderItemViewModel } from '../types'
 
@@ -43,9 +43,10 @@ export const resolveOrderItems = (
 
 export const useOrderItems = (): OrderItemViewModel[] => {
   const selectedProducts = useProductsStore((state) => state.selectedProducts)
+  const cameras = useMockProductResponseStore((state) => state.data?.cameras)
 
   return useMemo(
-    () => resolveOrderItems(selectedProducts, products.cameras),
-    [selectedProducts],
+    () => resolveOrderItems(selectedProducts, cameras ?? []),
+    [selectedProducts, cameras],
   )
 }

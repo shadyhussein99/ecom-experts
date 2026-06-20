@@ -18,3 +18,7 @@ export interface Product {
   price: string
   image: string
 }
+
+export interface ProductsCatalog {
+  cameras: Product[]
+}
