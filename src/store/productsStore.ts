@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { loadSavedSystem, persistSavedSystem } from '@/store/systemStorage'
 
 export interface productItem {
   productID: string
@@ -12,13 +13,19 @@ interface ProductsState {
     target: { productID: string; variantID: string | null },
     quantity: number,
   ) => void
+  saveForLater: () => boolean
 }
 
-export const useProductsStore = create<ProductsState>((set) => ({
-  selectedProducts: {
-    '1-1': { productID: '1', variantID: '1-1', quantity: 1 },
-    '2-1': { productID: '2', variantID: '2-1', quantity: 2 },
-  },
+export const DEFAULT_SELECTED_PRODUCTS: Record<string, productItem> = {
+  '1-1': { productID: '1', variantID: '1-1', quantity: 1 },
+  '2-1': { productID: '2', variantID: '2-1', quantity: 2 },
+}
+
+export const getInitialSelectedProducts = (): Record<string, productItem> =>
+  loadSavedSystem() ?? DEFAULT_SELECTED_PRODUCTS
+
+export const useProductsStore = create<ProductsState>((set, get) => ({
+  selectedProducts: getInitialSelectedProducts(),
   setQuantity: ({ productID, variantID }, quantity) =>
     set((state) => {
       const key = variantID ?? productID
@@ -30,4 +37,5 @@ export const useProductsStore = create<ProductsState>((set) => ({
       }
       return { selectedProducts }
     }),
+  saveForLater: () => persistSavedSystem(get().selectedProducts),
 }))

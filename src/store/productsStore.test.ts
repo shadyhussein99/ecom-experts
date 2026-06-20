@@ -1,8 +1,27 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { useProductsStore } from '@/store/productsStore'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import {
+  DEFAULT_SELECTED_PRODUCTS,
+  getInitialSelectedProducts,
+  useProductsStore,
+} from '@/store/productsStore'
+import { loadSavedSystem } from '@/store/systemStorage'
+
+const createMemoryStorage = () => {
+  const store = new Map<string, string>()
+  return {
+    getItem: (key: string) => store.get(key) ?? null,
+    setItem: (key: string, value: string) => store.set(key, value),
+    removeItem: (key: string) => store.delete(key),
+  }
+}
 
 beforeEach(() => {
+  vi.stubGlobal('localStorage', createMemoryStorage())
   useProductsStore.setState({ selectedProducts: {} })
+})
+
+afterEach(() => {
+  vi.unstubAllGlobals()
 })
 
 describe('productsStore.setQuantity', () => {
@@ -42,5 +61,38 @@ describe('productsStore.setQuantity', () => {
     setQuantity({ productID: 'p1', variantID: 'v1' }, 0)
 
     expect(useProductsStore.getState().selectedProducts).toEqual({})
+  })
+})
+
+describe('getInitialSelectedProducts', () => {
+  it('falls back to the default seed when nothing is saved', () => {
+    expect(getInitialSelectedProducts()).toEqual(DEFAULT_SELECTED_PRODUCTS)
+  })
+
+  it('restores a saved system', () => {
+    const saved = {
+      v1: { productID: 'p1', variantID: 'v1', quantity: 3 },
+    }
+    localStorage.setItem('savedProducts', JSON.stringify(saved))
+
+    expect(getInitialSelectedProducts()).toEqual(saved)
+  })
+
+  it('restores a saved-but-empty system instead of the default seed', () => {
+    localStorage.setItem('savedProducts', JSON.stringify({}))
+
+    expect(getInitialSelectedProducts()).toEqual({})
+  })
+})
+
+describe('productsStore.saveForLater', () => {
+  it('persists the current selection and reports success', () => {
+    const { setQuantity, saveForLater } = useProductsStore.getState()
+    setQuantity({ productID: 'p1', variantID: 'v1' }, 2)
+
+    expect(saveForLater()).toBe(true)
+    expect(loadSavedSystem()).toEqual({
+      v1: { productID: 'p1', variantID: 'v1', quantity: 2 },
+    })
   })
 })
