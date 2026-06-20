@@ -1,5 +1,6 @@
 import { useState, type ComponentType } from 'react'
 import { Accordion } from '@/components/molecules/accordion/Accordion'
+import { useMockProductResponseStore } from '@/store/mockProductResponse/mockProductResponseStore'
 import { CamerasSection } from './components/CamerasSection'
 import { PlanSection } from './components/PlanSection'
 import { SensorsSection } from './components/SensorsSection'
@@ -53,6 +54,9 @@ const sections: Section[] = [
 export const BuilderSteps = () => {
   const [openSection, setOpenSection] = useState<string | null>(sections[0].id)
   const selectedProductCounts = useSelectedProductCounts()
+  const isCatalogLoading = useMockProductResponseStore(
+    (state) => state.status === 'loading',
+  )
 
   return (
     <div className="flex flex-col">
@@ -77,6 +81,7 @@ export const BuilderSteps = () => {
               }
               icon={section.icon}
               selectedCount={selectedProductCounts[section.type]}
+              countLoading={isCatalogLoading && section.type === 'cameras'}
             >
               <Content
                 nextSectionType={nextSection?.type}

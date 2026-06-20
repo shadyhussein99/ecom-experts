@@ -1,14 +1,35 @@
 import { Divider } from '@/components/atoms/Divider'
+import { useMockProductResponseStore } from '@/store/mockProductResponse/mockProductResponseStore'
 import { useOrderItems } from './hooks/useOrderItems'
 import { OrderItem } from './components/OrderItem'
+import { OrderItemSkeleton } from './components/OrderItemSkeleton'
 import { StaticOrderSection } from './components/static/StaticOrderSection'
 import { StaticOrderPlan } from './components/static/StaticOrderPlan'
 import { StaticOrderShipping } from './components/static/StaticOrderShipping'
 import { OrderTotal } from './components/OrderTotal'
 import { STATIC_SECTIONS } from './staticSections'
 
+const SKELETON_COUNT = 2
+
 export const OrderSummary = () => {
   const items = useOrderItems()
+  const status = useMockProductResponseStore((state) => state.status)
+
+  const renderCameras = () => {
+    if (status === 'error') {
+      return (
+        <p className="text-foreground py-2 text-sm">Couldn't load products.</p>
+      )
+    }
+
+    if (status !== 'success') {
+      return Array.from({ length: SKELETON_COUNT }, (_, index) => (
+        <OrderItemSkeleton key={index} />
+      ))
+    }
+
+    return items.map((item) => <OrderItem key={item.key} item={item} />)
+  }
 
   return (
     <div className="bg-secondary rounded-lg px-4 pb-4">
@@ -26,11 +47,7 @@ export const OrderSummary = () => {
 
         <p className="text-grey-600 pb-1 text-xs">CAMERAS</p>
 
-        <div className="flex flex-col">
-          {items.map((item) => (
-            <OrderItem key={item.key} item={item} />
-          ))}
-        </div>
+        <div className="flex flex-col">{renderCameras()}</div>
 
         {STATIC_SECTIONS.map((section) => (
           <div key={section.label}>
