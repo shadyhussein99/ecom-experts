@@ -1,8 +1,9 @@
 import type { Product } from '@/types/product'
 import { cn } from '@/lib/clsx'
 import { useProductCard } from './hooks/useProductCard'
-import { CardVariants } from './CardVariants'
-import { CardStepper } from './CardStepper'
+import { CardVariants } from './components/CardVariants'
+import { CardStepper } from './components/CardStepper'
+import { CardPrice } from './components/CardPrice'
 
 interface ProductCardProps {
   product: Product
@@ -77,15 +78,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             onChange={setSelectedQuantity}
           />
 
-          {/* Card price */}
-          <div className="flex flex-col items-end leading-tight">
-            {sale && (
-              <span className="text-danger text-lg line-through sm:text-xl">
-                {sale.originalPrice}
-              </span>
-            )}
-            <span className="text-grey-700 text-lg sm:text-xl">{price}</span>
-          </div>
+          <CardPrice sale={sale} price={price} />
         </div>
       </div>
     </div>

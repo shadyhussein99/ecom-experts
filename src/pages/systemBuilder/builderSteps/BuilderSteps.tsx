@@ -1,5 +1,5 @@
 import { useState, type ComponentType } from 'react'
-import { Accordion } from '@/components/organisms/accordion/Accordion'
+import { Accordion } from '@/components/molecules/accordion/Accordion'
 import { CamerasSection } from './components/CamerasSection'
 import { PlanSection } from './components/PlanSection'
 import { SensorsSection } from './components/SensorsSection'

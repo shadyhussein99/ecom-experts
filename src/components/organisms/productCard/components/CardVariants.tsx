@@ -25,10 +25,10 @@ export const CardVariants = ({
               : 'border-border bg-background text-foreground hover:bg-grey-200',
           )}
         >
-          {variant.icon && (
+          {variant.image && (
             <img
               loading="lazy"
-              src={variant.icon}
+              src={variant.image}
               alt={`${variant.color} product`}
               className="size-7 object-contain"
             />
