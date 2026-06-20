@@ -2,9 +2,9 @@ import { Divider } from '@/components/atoms/Divider'
 import { useOrderItems } from './hooks/useOrderItems'
 import { OrderItem } from './components/OrderItem'
 import { StaticOrderSection } from './components/static/StaticOrderSection'
-import { OrderPlan } from './components/static/OrderPlan'
-import { OrderShipping } from './components/static/OrderShipping'
-import { OrderTotal } from './components/static/OrderTotal'
+import { StaticOrderPlan } from './components/static/StaticOrderPlan'
+import { StaticOrderShipping } from './components/static/StaticOrderShipping'
+import { OrderTotal } from './components/OrderTotal'
 import { STATIC_SECTIONS } from './staticSections'
 
 export const OrderSummary = () => {
@@ -40,10 +40,10 @@ export const OrderSummary = () => {
         ))}
 
         <Divider />
-        <OrderPlan />
+        <StaticOrderPlan />
 
         <Divider />
-        <OrderShipping />
+        <StaticOrderShipping />
 
         <OrderTotal />
       </div>
