@@ -1,0 +1,32 @@
+invalid=0
+
+# git feeds the refs being pushed on stdin: <local ref> <local sha> <remote ref> <remote sha>
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$local_ref" in
+    "(delete)" | "") continue ;;
+    refs/heads/*) branch=${local_ref#refs/heads/} ;;
+    *) continue ;;
+  esac
+
+  # all-zero sha means the branch is being deleted, not pushed
+  case "$local_sha" in
+    *[!0]*) : ;;
+    *) continue ;;
+  esac
+
+  [ "$branch" = "main" ] && continue
+
+  if ! printf '%s' "$branch" | grep -qE '^(feat|fix|chore|refactor)/[a-z0-9]+(-[a-z0-9]+)*$'; then
+    echo ""
+    echo "✖ Invalid branch name: \"$branch\""
+    echo ""
+    echo "  Expected format: <type>/<description>"
+    echo "  where <type> is one of: feat, fix, chore, refactor"
+    echo "  and <description> is lowercase words separated by dashes"
+    echo "  Example: feat/this-is-my-branch-name"
+    echo ""
+    invalid=1
+  fi
+done
+
+exit $invalid
