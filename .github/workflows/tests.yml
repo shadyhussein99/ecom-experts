@@ -31,9 +31,9 @@ jobs:
 
             - name: Install pnpm with Corepack
               run: |
-                  corepack prepare
+                  corepack prepare --activate
                   pnpm --version
-                    pnpm config set store-dir ~/.pnpm-store
+                  pnpm config set store-dir ~/.pnpm-store
 
             - name: Install dependencies
               run: pnpm install
