@@ -49,14 +49,15 @@ export const Accordion = ({
         />
         <span className="flex-1 text-xl font-semibold">{title}</span>
 
-        {isOpen &&
-          (countLoading ? (
+        <div className={cn(!isOpen && 'sm:hidden')}>
+          {countLoading ? (
             <Skeleton className="h-4 w-16" />
           ) : (
             <span className="text-primary text-base font-medium whitespace-nowrap">
               {selectedCount === undefined ? '0' : selectedCount} selected
             </span>
-          ))}
+          )}
+        </div>
 
         <img
           loading="lazy"
