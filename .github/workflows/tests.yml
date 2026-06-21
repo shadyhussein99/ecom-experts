@@ -1,0 +1,42 @@
+name: Run Unit Tests
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    install-deps:
+        uses: ./.github/workflows/install-dependencies.yml
+        with:
+            fallback-node-version: "18"
+
+    test:
+        needs: install-deps
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ needs.install-deps.outputs.NODE_VERSION }}
+
+            - name: Enable Corepack
+              run: |
+                  npm i -g corepack@latest
+                  corepack enable
+
+            - name: Install pnpm with Corepack
+              run: |
+                  corepack prepare
+                  pnpm --version
+                    pnpm config set store-dir ~/.pnpm-store
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Run unit tests
+              run: pnpm exec vitest run
