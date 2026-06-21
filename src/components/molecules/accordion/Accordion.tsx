@@ -39,7 +39,10 @@ export const Accordion = ({
     >
       <button
         onClick={toggle}
-        className="flex w-full cursor-pointer items-center gap-4 pt-3 pb-6 text-left"
+        className={cn(
+          'flex w-full cursor-pointer items-center gap-4 pt-3 text-left',
+          isOpen ? 'pb-6' : 'pb-3',
+        )}
       >
         <img
           loading="lazy"
@@ -49,14 +52,15 @@ export const Accordion = ({
         />
         <span className="flex-1 text-xl font-semibold">{title}</span>
 
-        {isOpen &&
-          (countLoading ? (
+        <div className={cn(!isOpen && 'sm:hidden')}>
+          {countLoading ? (
             <Skeleton className="h-4 w-16" />
           ) : (
             <span className="text-primary text-base font-medium whitespace-nowrap">
               {selectedCount === undefined ? '0' : selectedCount} selected
             </span>
-          ))}
+          )}
+        </div>
 
         <img
           loading="lazy"

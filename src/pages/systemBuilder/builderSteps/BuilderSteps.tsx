@@ -18,6 +18,7 @@ interface Section {
   Content: ComponentType<SectionContentProps>
   icon: string
   type: SectionType
+  staticSelectedCount?: number
 }
 
 const sections: Section[] = [
@@ -34,6 +35,7 @@ const sections: Section[] = [
     Content: PlanSection,
     icon: planIcon,
     type: 'plan',
+    staticSelectedCount: 1,
   },
   {
     id: '3',
@@ -41,6 +43,7 @@ const sections: Section[] = [
     Content: SensorsSection,
     icon: sensorsIcon,
     type: 'sensors',
+    staticSelectedCount: 2,
   },
   {
     id: '4',
@@ -48,6 +51,7 @@ const sections: Section[] = [
     Content: ProtectionSection,
     icon: protectionIcon,
     type: 'protection',
+    staticSelectedCount: 1,
   },
 ]
 
@@ -80,7 +84,10 @@ export const BuilderSteps = () => {
                 setOpenSection(isOpen ? null : section.id)
               }
               icon={section.icon}
-              selectedCount={selectedProductCounts[section.type]}
+              selectedCount={
+                selectedProductCounts[section.type] ??
+                section.staticSelectedCount
+              }
               countLoading={isCatalogLoading && section.type === 'cameras'}
             >
               <Content
