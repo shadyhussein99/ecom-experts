@@ -35,32 +35,34 @@ export const OrderSummary = () => {
     <div className="bg-secondary rounded-lg px-4 pb-4">
       <p className="text-foreground pt-2.5 pb-1 text-xs">REVIEW</p>
 
-      <div className="py-4">
-        <p className="flex-1 text-xl font-semibold">Your security system</p>
+      <div className="py-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-8 xl:block">
+        <div>
+          <p className="text-xl font-semibold">Your security system</p>
 
-        <p className="text-foreground pt-2 text-sm">
-          Review your personalized protection system designed to keep what
-          matters most safe.
-        </p>
+          <p className="text-foreground pt-2 text-sm">
+            Review your personalized protection system designed to keep what
+            matters most safe.
+          </p>
 
-        <Divider />
+          <Divider />
 
-        <p className="text-grey-600 pb-1 text-xs">CAMERAS</p>
+          <p className="text-grey-600 pb-1 text-xs">CAMERAS</p>
 
-        <div className="flex flex-col">{renderCameras()}</div>
+          <div className="flex flex-col">{renderCameras()}</div>
 
-        {STATIC_SECTIONS.map((section) => (
-          <div key={section.label}>
-            <Divider />
-            <StaticOrderSection section={section} />
-          </div>
-        ))}
+          {STATIC_SECTIONS.map((section) => (
+            <div key={section.label}>
+              <Divider />
+              <StaticOrderSection section={section} />
+            </div>
+          ))}
 
-        <Divider />
-        <StaticOrderPlan />
+          <Divider />
+          <StaticOrderPlan />
 
-        <Divider />
-        <StaticOrderShipping />
+          <Divider />
+          <StaticOrderShipping />
+        </div>
 
         <OrderTotal />
       </div>

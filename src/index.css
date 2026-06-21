@@ -82,6 +82,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --font-sans: var(--sans);
+
+  --breakpoint-xl: 85rem;
+  --breakpoint-lg: 72rem;
 }
 
 @layer base {
