@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useMockProductResponseStore } from '@/store/mockProductResponse/mockProductResponseStore'
 import { BuilderSteps } from './builderSteps/BuilderSteps'
 import { OrderSummary } from './orderSummary/OrderSummary'
+import { SEO } from '@/components/atoms/SEO'
 
 function SystemBuilder() {
   const status = useMockProductResponseStore((state) => state.status)
@@ -15,14 +16,21 @@ function SystemBuilder() {
   }, [status, loadProducts])
 
   return (
-    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-10">
-      <div className="lg:col-span-7">
-        <BuilderSteps />
+    <>
+      <SEO
+        keywords="Products,  Ecom Experts"
+        title="Products | Ecom Experts"
+        description="Products of Ecom Experts."
+      />
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-10">
+        <div className="lg:col-span-7">
+          <BuilderSteps />
+        </div>
+        <div className="lg:col-span-3">
+          <OrderSummary />
+        </div>
       </div>
-      <div className="lg:col-span-3">
-        <OrderSummary />
-      </div>
-    </div>
+    </>
   )
 }
 
