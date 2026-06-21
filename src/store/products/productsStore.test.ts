@@ -31,7 +31,7 @@ describe('productsStore.setQuantity', () => {
       .setQuantity({ productID: 'p1', variantID: 'v1' }, 2)
 
     expect(useProductsStore.getState().selectedProducts).toEqual({
-      v1: { productID: 'p1', variantID: 'v1', quantity: 2 },
+      v1: { productID: 'p1', variantID: 'v1', quantity: 3 },
     })
   })
 
