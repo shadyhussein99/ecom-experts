@@ -41,14 +41,14 @@ export const CamerasSection = ({
 
     return (
       <div className="flex flex-col items-center justify-center gap-4">
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2">
           {items.map((camera, index) => {
             const centerLast = isOdd && index === items.length - 1
 
             return centerLast ? (
               <div
                 key={camera.id}
-                className="sm:col-span-2 sm:w-[calc(50%-0.5rem)] sm:justify-self-center"
+                className="sm:col-span-2 sm:w-[calc(50%-0.5rem)] sm:justify-self-center lg:col-span-4 lg:w-[calc(25%-0.75rem)] lg:justify-self-center xl:col-span-2 xl:w-[calc(50%-0.5rem)] xl:justify-self-center"
               >
                 <ProductCard product={camera} />
               </div>
