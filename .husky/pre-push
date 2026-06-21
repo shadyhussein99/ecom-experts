@@ -2,15 +2,15 @@ invalid=0
 
 # git feeds the refs being pushed on stdin: <local ref> <local sha> <remote ref> <remote sha>
 while read -r local_ref local_sha remote_ref remote_sha; do
-  case "$local_ref" in
-    "(delete)" | "") continue ;;
-    refs/heads/*) branch=${local_ref#refs/heads/} ;;
+  # all-zero local sha means the branch is being deleted, not pushed
+  case "$local_sha" in
+    *[!0]*) : ;;
     *) continue ;;
   esac
 
-  # all-zero sha means the branch is being deleted, not pushed
-  case "$local_sha" in
-    *[!0]*) : ;;
+  # validate the DESTINATION branch; the source ref can be HEAD, a sha, or a tag
+  case "$remote_ref" in
+    refs/heads/*) branch=${remote_ref#refs/heads/} ;;
     *) continue ;;
   esac
 
