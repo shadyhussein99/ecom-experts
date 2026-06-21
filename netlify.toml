@@ -1,3 +1,5 @@
+# To handle routing with Netlify deployment
+
 [build]
   command = "pnpm build"
   publish = "dist"
