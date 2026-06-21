@@ -39,7 +39,10 @@ export const Accordion = ({
     >
       <button
         onClick={toggle}
-        className="flex w-full cursor-pointer items-center gap-4 pt-3 pb-6 text-left"
+        className={cn(
+          'flex w-full cursor-pointer items-center gap-4 pt-3 text-left',
+          isOpen ? 'pb-6' : 'pb-3',
+        )}
       >
         <img
           loading="lazy"
