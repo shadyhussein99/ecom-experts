@@ -12,6 +12,10 @@
 - commit message and pre-push guards to control naming conventions
 - SEO optimization using react-helmet-async
 
+## Documentation for System Architecture
+
+https://6a381d498ad80d6d08966a31--curious-strudel-e235e1.netlify.app/
+
 ## If I have more time
 
 - Add more unit tests (currently only added for critical logic hooks)
