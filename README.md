@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+## Tech-Stack used
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- React 19 (Vite)
+- tailwindcss
+- Zustand (for Global State Management)
+- vitest (unit testing)
+- husky (commit & push guards)
 
-Currently, two official plugins are available:
+## Tech Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- CI/CD pipeline to ensure unit tests succeed before merging to "main" branch and block merging if it fails
+- commit message and pre-push guards to control naming conventions
+- SEO optimization using react-helmet-async
 
-## React Compiler
+## Documentation for System Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+[Uploading system-architecture.html…]()
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## If I have more time
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Add more unit tests (currently only added for critical logic hooks)
+- Implement E2E testing
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+To run the chrome extention locally, use the following commands
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+`git clone https://github.com/shadyhussein99/ecom-experts`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Install the dependencies
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+`pnpm install`
+
+Run the application
+
+`pnpm dev`
+
+## To clear local storage after persisting products (frest start)
+
+Kill the running server and run `pnpm dev` again, I added a small logic to reset the persisted products on fresh start
+
+## Deployment Link
+
+https://ecom-experts.netlify.app/
+
+
+
