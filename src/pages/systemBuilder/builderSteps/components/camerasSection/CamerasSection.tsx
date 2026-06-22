@@ -1,8 +1,9 @@
 import { Button } from '@/components/atoms/button/Button'
 import { ProductCard } from '@/components/organisms/productCard/ProductCard'
-import { ProductCardSkeleton } from '@/components/organisms/productCard/components/ProductCardSkeleton'
+import { ProductCardSkeleton } from '@/components/organisms/productCard/components/productCardSkeleton/ProductCardSkeleton'
 import { useMockProductResponseStore } from '@/store/mockProductResponse/mockProductResponseStore'
-import type { SectionContentProps } from '../types'
+import type { SectionContentProps } from '@/pages/systemBuilder/builderSteps/types'
+import { camerasSectionStyles } from './camerasSectionStyles'
 
 const SKELETON_COUNT = 4
 
@@ -17,8 +18,8 @@ export const CamerasSection = ({
   )
 
   const renderError = () => (
-    <div className="flex flex-col items-center justify-center gap-4 py-8">
-      <p className="text-foreground text-center">
+    <div className={camerasSectionStyles.errorWrapper}>
+      <p className={camerasSectionStyles.errorText}>
         Couldn't load products. Please try again.
       </p>
       <Button variant="outline" onClick={() => loadProducts()}>
@@ -28,7 +29,7 @@ export const CamerasSection = ({
   )
 
   const renderSkeletons = () => (
-    <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+    <div className={camerasSectionStyles.skeletonGrid}>
       {Array.from({ length: SKELETON_COUNT }, (_, index) => (
         <ProductCardSkeleton key={index} />
       ))}
@@ -40,15 +41,15 @@ export const CamerasSection = ({
     const isOdd = items.length % 2 === 1
 
     return (
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2">
+      <div className={camerasSectionStyles.content}>
+        <div className={camerasSectionStyles.grid}>
           {items.map((camera, index) => {
             const centerLast = isOdd && index === items.length - 1
 
             return centerLast ? (
               <div
                 key={camera.id}
-                className="sm:col-span-2 sm:w-[calc(50%-0.5rem)] sm:justify-self-center lg:col-span-4 lg:w-[calc(25%-0.75rem)] lg:justify-self-center xl:col-span-2 xl:w-[calc(50%-0.5rem)] xl:justify-self-center"
+                className={camerasSectionStyles.centeredLast}
               >
                 <ProductCard product={camera} />
               </div>

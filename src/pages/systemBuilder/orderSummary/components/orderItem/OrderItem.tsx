@@ -1,7 +1,8 @@
-import { CardStepper } from '@/components/organisms/productCard/components/CardStepper'
+import { CardStepper } from '@/components/organisms/productCard/components/cardStepper/CardStepper'
 import { formatAmount } from '@/lib/formatAmount'
 import { useProductsStore } from '@/store/products/productsStore'
-import type { OrderItemViewModel } from '../types'
+import type { OrderItemViewModel } from '@/pages/systemBuilder/orderSummary/types'
+import { orderItemStyles } from './orderItemStyles'
 
 interface OrderItemProps {
   item: OrderItemViewModel
@@ -26,31 +27,31 @@ export const OrderItem = ({ item }: OrderItemProps) => {
     unitOriginalPrice !== null ? unitOriginalPrice * quantity : null
 
   return (
-    <div className="flex items-center gap-3 py-2">
-      <div className="bg-background flex size-12 shrink-0 items-center justify-center rounded-lg p-1 shadow-sm">
+    <div className={orderItemStyles.row}>
+      <div className={orderItemStyles.iconWrapper}>
         <img
           loading="lazy"
           src={icon}
           alt={title}
-          className="max-h-full w-auto object-contain"
+          className={orderItemStyles.icon}
         />
       </div>
 
-      <p className="flex-1 text-sm font-semibold text-neutral-900">{title}</p>
+      <p className={orderItemStyles.title}>{title}</p>
 
       <CardStepper
         quantity={quantity}
         onChange={(next) => setQuantity({ productID, variantID }, next)}
-        className="bg-white"
+        className={orderItemStyles.stepper}
       />
 
-      <div className="flex flex-col items-end leading-tight">
+      <div className={orderItemStyles.priceBlock}>
         {totalBeforeSale !== null && (
-          <span className="text-grey-600 text-sm line-through">
+          <span className={orderItemStyles.originalPrice}>
             ${formatAmount(totalBeforeSale)}
           </span>
         )}
-        <span className="text-primary text-sm font-semibold">
+        <span className={orderItemStyles.finalPrice}>
           ${formatAmount(finalTotal)}
         </span>
       </div>

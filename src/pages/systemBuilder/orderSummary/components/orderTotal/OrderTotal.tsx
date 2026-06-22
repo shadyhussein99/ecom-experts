@@ -4,6 +4,7 @@ import { Button } from '@/components/atoms/button/Button'
 import { formatAmount } from '@/lib/formatAmount'
 import { useOrderTotals } from '@/pages/systemBuilder/orderSummary/hooks/useOrderTotals'
 import { useProductsStore } from '@/store/products/productsStore'
+import { orderTotalStyles } from './orderTotalStyles'
 
 export const OrderTotal = () => {
   const { originalTotal, finalTotal, savings } = useOrderTotals()
@@ -23,67 +24,65 @@ export const OrderTotal = () => {
       loading="lazy"
       src={satisfaction}
       alt="satisfaction guarantee"
-      className="size-18 shrink-0 lg:size-20 xl:size-18"
+      className={orderTotalStyles.satisfactionImg}
     />
   )
 
   const lowAsBadge = (
-    <span className="bg-primary text-primary-foreground rounded-md px-2.5 py-1 text-xs font-medium">
-      as low as $19.19/mo
-    </span>
+    <span className={orderTotalStyles.lowAsBadge}>as low as $19.19/mo</span>
   )
 
   const priceBlock = (
-    <div className="flex items-baseline gap-2">
-      <span className="text-grey-600 text-lg line-through">
+    <div className={orderTotalStyles.priceRow}>
+      <span className={orderTotalStyles.priceOriginal}>
         ${formatAmount(originalTotal)}
       </span>
-      <span className="text-primary text-2xl font-bold">
+      <span className={orderTotalStyles.priceFinal}>
         ${formatAmount(finalTotal)}
       </span>
     </div>
   )
 
   return (
-    <div className="pt-2">
-      <div className="flex items-center justify-between gap-3 lg:hidden xl:flex">
+    <div className={orderTotalStyles.container}>
+      <div className={orderTotalStyles.compactRow}>
         {satisfactionImg}
 
-        <div className="flex flex-col items-end gap-1.5">
+        <div className={orderTotalStyles.compactDetails}>
           {lowAsBadge}
           {priceBlock}
         </div>
       </div>
 
       {/* Displayed only in screen range lg to xl as per design */}
-      <div className="hidden lg:block xl:hidden">
-        <div className="flex items-center gap-3">
+      <div className={orderTotalStyles.midRange}>
+        <div className={orderTotalStyles.midRangeRow}>
           {satisfactionImg}
 
           <div>
-            <p className="text-lg font-semibold text-neutral-900">
+            <p className={orderTotalStyles.returnsTitle}>
               30-day hassle-free returns
             </p>
-            <p className="text-foreground pt-1 text-sm">
+            <p className={orderTotalStyles.returnsText}>
               If you're not totally in love with the product, we will refund you
               100%.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3 pt-3">
+        <div className={orderTotalStyles.midRangePriceRow}>
           {lowAsBadge}
           {priceBlock}
         </div>
       </div>
 
-      <p className="text-success pt-4 text-center text-sm font-medium">
+      <p className={orderTotalStyles.savings}>
         Congrats! You're saving ${formatAmount(savings)} on your security
         bundle!
       </p>
 
       <Button
-        className="mt-3 h-13 w-full text-base font-semibold"
+        className={orderTotalStyles.checkoutButton}
         onClick={() =>
           toast.success(`Order confirmed! Total $${formatAmount(finalTotal)}`)
         }
@@ -92,7 +91,7 @@ export const OrderTotal = () => {
       </Button>
 
       <button
-        className="text-grey-700 mx-auto mt-4 block cursor-pointer text-sm italic underline underline-offset-2"
+        className={orderTotalStyles.saveForLater}
         onClick={handleSaveForLater}
       >
         Save my system for later

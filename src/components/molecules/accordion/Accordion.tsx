@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
-import { cn } from '@/lib/clsx'
 import { Skeleton } from '@/components/atoms/Skeleton'
 import ChevronDown from '@/assets/icons/chevron-down.svg'
+import { accordionStyles } from './accordionStyles'
 
 interface AccordionProps {
   title: string
@@ -34,29 +34,21 @@ export const Accordion = ({
   }
 
   return (
-    <div
-      className={`border-foreground border-t-[0.5px] ${isOpen ? '' : 'border-b-[0.5px]'}`}
-    >
-      <button
-        onClick={toggle}
-        className={cn(
-          'flex w-full cursor-pointer items-center gap-4 pt-3 text-left',
-          isOpen ? 'pb-6' : 'pb-3',
-        )}
-      >
+    <div className={accordionStyles.root(isOpen)}>
+      <button onClick={toggle} className={accordionStyles.trigger(isOpen)}>
         <img
           loading="lazy"
           src={icon}
           alt={title}
-          className="size-5 object-contain"
+          className={accordionStyles.icon}
         />
-        <span className="flex-1 text-xl font-semibold">{title}</span>
+        <span className={accordionStyles.title}>{title}</span>
 
-        <div className={cn(!isOpen && 'sm:hidden')}>
+        <div className={accordionStyles.count(isOpen)}>
           {countLoading ? (
-            <Skeleton className="h-4 w-16" />
+            <Skeleton className={accordionStyles.countSkeleton} />
           ) : (
-            <span className="text-primary text-base font-medium whitespace-nowrap">
+            <span className={accordionStyles.countText}>
               {selectedCount === undefined ? '0' : selectedCount} selected
             </span>
           )}
@@ -66,21 +58,13 @@ export const Accordion = ({
           loading="lazy"
           src={ChevronDown}
           alt={title}
-          className={cn(
-            'size-3 object-contain transition-transform duration-200',
-            isOpen && 'rotate-180',
-          )}
+          className={accordionStyles.chevron(isOpen)}
         />
       </button>
 
-      <div
-        className={cn(
-          'grid transition-[grid-template-rows] duration-200 ease-out',
-          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-        )}
-      >
-        <div className="overflow-hidden">
-          <div className="pb-5">{children}</div>
+      <div className={accordionStyles.panel(isOpen)}>
+        <div className={accordionStyles.panelInner}>
+          <div className={accordionStyles.panelContent}>{children}</div>
         </div>
       </div>
     </div>

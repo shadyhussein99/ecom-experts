@@ -1,5 +1,5 @@
 import type { ProductVariant } from '@/types/product'
-import { cn } from '@/lib/clsx'
+import { cardVariantsStyles } from './cardVariantsStyles'
 
 interface CardVariantsProps {
   variants: ProductVariant[]
@@ -13,16 +13,13 @@ export const CardVariants = ({
   onSelect,
 }: CardVariantsProps) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={cardVariantsStyles.container}>
       {variants.map((variant) => (
         <button
           key={variant.id}
           onClick={() => onSelect(variant.id)}
-          className={cn(
-            'flex cursor-pointer items-center gap-2 rounded-[4px] border px-2 py-0.5 text-xs transition-colors',
-            selectedVariantId === variant.id
-              ? 'border-success text-secondary-foreground bg-green-100'
-              : 'border-border bg-background text-foreground hover:bg-grey-200',
+          className={cardVariantsStyles.option(
+            selectedVariantId === variant.id,
           )}
         >
           {variant.image && (
@@ -30,7 +27,7 @@ export const CardVariants = ({
               loading="lazy"
               src={variant.image}
               alt={`${variant.color} product`}
-              className="size-7 object-contain"
+              className={cardVariantsStyles.image}
             />
           )}
           {variant.color}

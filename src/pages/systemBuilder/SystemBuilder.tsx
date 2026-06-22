@@ -3,6 +3,7 @@ import { useMockProductResponseStore } from '@/store/mockProductResponse/mockPro
 import { BuilderSteps } from './builderSteps/BuilderSteps'
 import { OrderSummary } from './orderSummary/OrderSummary'
 import { SEO } from '@/components/atoms/SEO'
+import { systemBuilderStyles } from './systemBuilderStyles'
 
 function SystemBuilder() {
   const status = useMockProductResponseStore((state) => state.status)
@@ -22,11 +23,11 @@ function SystemBuilder() {
         title="Products | Ecom Experts"
         description="Products of Ecom Experts."
       />
-      <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-10">
-        <div className="xl:col-span-7">
+      <div className={systemBuilderStyles.grid}>
+        <div className={systemBuilderStyles.buildersColumn}>
           <BuilderSteps />
         </div>
-        <div className="xl:col-span-3">
+        <div className={systemBuilderStyles.summaryColumn}>
           <OrderSummary />
         </div>
       </div>

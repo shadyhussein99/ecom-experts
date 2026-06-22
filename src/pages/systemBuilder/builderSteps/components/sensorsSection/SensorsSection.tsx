@@ -1,13 +1,14 @@
 import { Button } from '@/components/atoms/button/Button'
-import type { SectionContentProps } from '../types'
+import type { SectionContentProps } from '@/pages/systemBuilder/builderSteps/types'
+import { sensorsSectionStyles } from './sensorsSectionStyles'
 
 export const SensorsSection = ({
   nextSectionType,
   onNext,
 }: SectionContentProps) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <h3 className="text-foreground text-center">Sensors options go here.</h3>
+    <div className={sensorsSectionStyles.container}>
+      <h3 className={sensorsSectionStyles.text}>Sensors options go here.</h3>
       <Button variant={'outline'} onClick={onNext}>
         Next: Choose your {nextSectionType}
       </Button>
