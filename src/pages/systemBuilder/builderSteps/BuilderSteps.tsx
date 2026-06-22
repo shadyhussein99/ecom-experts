@@ -1,16 +1,17 @@
 import { useState, type ComponentType } from 'react'
 import { Accordion } from '@/components/molecules/accordion/Accordion'
 import { useMockProductResponseStore } from '@/store/mockProductResponse/mockProductResponseStore'
-import { CamerasSection } from './components/CamerasSection'
-import { PlanSection } from './components/PlanSection'
-import { SensorsSection } from './components/SensorsSection'
-import { ProtectionSection } from './components/ProtectionSection'
+import { CamerasSection } from './components/camerasSection/CamerasSection'
+import { PlanSection } from './components/planSection/PlanSection'
+import { SensorsSection } from './components/sensorsSection/SensorsSection'
+import { ProtectionSection } from './components/protectionSection/ProtectionSection'
 import { useSelectedProductCounts } from './hooks/useSelectedProductCounts'
 import camerasIcon from '@/assets/products/cameras-icon.svg'
 import planIcon from '@/assets/products/plan-icon.svg'
 import sensorsIcon from '@/assets/products/sensors-icon.svg'
 import protectionIcon from '@/assets/products/protection-icon.svg'
 import type { SectionContentProps, SectionType } from './types'
+import { builderStepsStyles } from './builderStepsStyles'
 
 interface Section {
   id: string
@@ -63,7 +64,7 @@ export const BuilderSteps = () => {
   )
 
   return (
-    <div className="flex flex-col">
+    <div className={builderStepsStyles.container}>
       {sections.map((section, index) => {
         const stepNumber = index + 1
         const nextSection = sections[index + 1]
@@ -72,9 +73,9 @@ export const BuilderSteps = () => {
         return (
           <div
             key={section.id}
-            className={`${openSection === section.id ? 'bg-secondary px-4' : ''} rounded-lg p-2`}
+            className={builderStepsStyles.section(openSection === section.id)}
           >
-            <p className="text-foreground pt-2.5 pb-1 text-xs">
+            <p className={builderStepsStyles.stepLabel}>
               STEP {stepNumber} OF {sections.length}
             </p>
             <Accordion

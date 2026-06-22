@@ -1,9 +1,9 @@
 import type { Product } from '@/types/product'
-import { cn } from '@/lib/clsx'
 import { useProductCard } from './hooks/useProductCard'
-import { CardVariants } from './components/CardVariants'
-import { CardStepper } from './components/CardStepper'
-import { CardPrice } from './components/CardPrice'
+import { CardVariants } from './components/cardVariants/CardVariants'
+import { CardStepper } from './components/cardStepper/CardStepper'
+import { CardPrice } from './components/cardPrice/CardPrice'
+import { productCardStyles } from './productCardStyles'
 
 interface ProductCardProps {
   product: Product
@@ -23,42 +23,32 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   } = useProductCard({ productID: id, variantsIDs })
 
   return (
-    <div
-      className={cn(
-        'bg-card flex flex-col gap-6 rounded-2xl border p-3.5 shadow-sm sm:flex-row sm:items-start sm:gap-2 lg:flex-col lg:items-stretch lg:gap-6 xl:flex-row xl:items-start xl:gap-2',
-        totalQuantity > 0 && 'border-primary border-2',
-      )}
-    >
+    <div className={productCardStyles.container(totalQuantity > 0)}>
       {/* Image and Sale Badge */}
-      <div className="flex w-full max-w-full shrink-0 flex-col gap-3 px-0 sm:w-2/5 sm:max-w-fit lg:w-full lg:max-w-full xl:w-2/5 xl:max-w-fit">
+      <div className={productCardStyles.imageColumn}>
         {sale && (
-          <span className="bg-primary text-primary-foreground w-fit rounded-full px-2 py-0.5 text-xs font-semibold">
+          <span className={productCardStyles.saleBadge}>
             Save {sale.discount}
           </span>
         )}
-        <div className="flex w-full flex-1 items-center justify-center sm:w-fit lg:w-full xl:w-fit">
+        <div className={productCardStyles.imageWrapper}>
           <img
             loading="lazy"
             src={image}
             alt={title}
-            className="max-h-32 w-auto max-w-full object-contain"
+            className={productCardStyles.image}
           />
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3">
+      <div className={productCardStyles.body}>
         {/* Card title and description */}
-        <div className="flex flex-col gap-2">
-          <p className="text-lg leading-none font-semibold text-neutral-900">
-            {title}
-          </p>
+        <div className={productCardStyles.titleBlock}>
+          <p className={productCardStyles.title}>{title}</p>
 
-          <p className="text-foreground text-sm">
+          <p className={productCardStyles.description}>
             {description}{' '}
-            <a
-              href="#"
-              className="text-primary font-semibold whitespace-nowrap underline underline-offset-2"
-            >
+            <a href="#" className={productCardStyles.learnMore}>
               Learn More
             </a>
           </p>
@@ -72,7 +62,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           />
         )}
 
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className={productCardStyles.footer}>
           <CardStepper
             quantity={selectedQuantity}
             onChange={setSelectedQuantity}

@@ -1,0 +1,15 @@
+export const productCardSkeletonStyles = {
+  card: 'bg-card flex flex-col gap-6 rounded-2xl border p-3.5 shadow-sm sm:flex-row sm:items-start sm:gap-2',
+  imageColumn: 'shrink-0 sm:w-2/5',
+  image: 'h-36 w-full rounded-xl sm:h-48',
+  body: 'flex flex-1 flex-col gap-3',
+  titleBlock: 'flex flex-col gap-2',
+  titleLine: 'h-5 w-3/4',
+  line: 'h-4 w-full',
+  lineShort: 'h-4 w-2/3',
+  variantsRow: 'flex gap-2',
+  variant: 'size-6 h-6 w-12',
+  footer: 'flex items-center justify-between gap-4',
+  footerLeft: 'h-6 w-24',
+  footerRight: 'h-6 w-16',
+}

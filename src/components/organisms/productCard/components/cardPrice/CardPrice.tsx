@@ -1,5 +1,6 @@
 import type { ProductSale } from '@/types/product'
 import { formatAmount } from '@/lib/formatAmount'
+import { cardPriceStyles } from './cardPriceStyles'
 
 interface CardPriceProps {
   sale: ProductSale | null
@@ -8,13 +9,13 @@ interface CardPriceProps {
 
 export const CardPrice = ({ sale, price }: CardPriceProps) => {
   return (
-    <div className="flex flex-col items-end leading-tight">
+    <div className={cardPriceStyles.container}>
       {sale && (
-        <span className="text-danger text-lg line-through sm:text-xl">
+        <span className={cardPriceStyles.originalPrice}>
           ${formatAmount(Number(sale.originalPrice))}
         </span>
       )}
-      <span className="text-grey-700 text-lg sm:text-xl">
+      <span className={cardPriceStyles.price}>
         ${formatAmount(Number(price))}
       </span>
     </div>
